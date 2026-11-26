@@ -1,0 +1,14 @@
+apiVersion: v2
+name: payments-service
+description: Production payments microservice Helm chart
+type: application
+version: 1.4.0
+appVersion: "2.8.1"
+dependencies:
+  - name: postgresql
+    version: 15.5.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: "*"
+    repository: http://charts.internal.example.com/helm

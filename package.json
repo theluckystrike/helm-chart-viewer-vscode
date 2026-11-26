@@ -1,0 +1,323 @@
+{
+  "name": "zovo-helm-chart-viewer",
+  "displayName": "Helm Chart & Values Viewer",
+  "description": "Open Chart.yaml, values.yaml and Chart.lock in VS Code: chart metadata, dependency tree, nested values explorer and security checks, offline.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0F172A",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/helm-chart-viewer-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/helm-chart-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/helm-chart-viewer-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "helm",
+    "chart",
+    "values",
+    "kubernetes",
+    "k8s",
+    "yaml",
+    "devops",
+    "security"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri",
+    "onCustomEditor:zovo-helm.viewer"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "zovo-helm.viewer",
+        "displayName": "Helm Chart & Values Viewer",
+        "selector": [
+          {
+            "filenamePattern": "Chart.yaml"
+          },
+          {
+            "filenamePattern": "Chart.lock"
+          },
+          {
+            "filenamePattern": "values.yaml"
+          },
+          {
+            "filenamePattern": "values.*.yaml"
+          },
+          {
+            "filenamePattern": "values-*.yaml"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "zovoHelm.openWith",
+        "title": "Open in Helm Chart & Values Viewer",
+        "category": "Helm Chart Viewer",
+        "icon": "$(package)"
+      },
+      {
+        "command": "zovoHelm.openSample",
+        "title": "Open the Sample Helm Values File",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.openWalkthrough",
+        "title": "Get Started",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.supportDeveloper",
+        "title": "Support the developer",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.auditChart",
+        "title": "Audit Helm chart security and drift (Pro, 1 free try)",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.diffValues",
+        "title": "Compare two Helm values files (Pro, 1 free try)",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.exportValuesDoc",
+        "title": "Export values reference to Markdown and CSV (Pro, 1 free try)",
+        "category": "Helm Chart Viewer"
+      },
+      {
+        "command": "zovoHelm.zovoPro.auditChart",
+        "title": "Zovo Pro: Audit Helm chart security and drift"
+      },
+      {
+        "command": "zovoHelm.zovoPro.diffValues",
+        "title": "Zovo Pro: Compare two Helm values files"
+      },
+      {
+        "command": "zovoHelm.zovoPro.exportValuesDoc",
+        "title": "Zovo Pro: Export values reference to Markdown and CSV"
+      },
+      {
+        "command": "zovoHelm.zovoTitle.auditChart",
+        "title": "Zovo Pro: Audit Helm chart security and drift"
+      },
+      {
+        "command": "zovoHelm.zovoTitle.diffValues",
+        "title": "Zovo Pro: Compare two Helm values files"
+      },
+      {
+        "command": "zovoHelm.zovoTitle.exportValuesDoc",
+        "title": "Zovo Pro: Export values reference to Markdown and CSV"
+      },
+      {
+        "command": "zovoHelm.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoHelm.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "zovoHelm.zovoTitle.auditChart",
+          "when": "activeCustomEditorId == 'zovo-helm.viewer' && config.zovoHelm.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoHelm.zovoTitle.diffValues",
+          "when": "activeCustomEditorId == 'zovo-helm.viewer' && config.zovoHelm.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoHelm.zovoTitle.exportValuesDoc",
+          "when": "activeCustomEditorId == 'zovo-helm.viewer' && config.zovoHelm.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "zovoHelm.openWith",
+          "when": "resourceFilename =~ /^(Chart\\.(yaml|lock)|values([.-].*)?\\.ya?ml)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "zovoHelm.zovoPro.auditChart",
+          "when": "resourceFilename =~ /^(Chart\\.(yaml|lock)|values([.-].*)?\\.ya?ml)$/i && !explorerResourceIsFolder && config.zovoHelm.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoHelm.zovoPro.diffValues",
+          "when": "resourceFilename =~ /^(Chart\\.(yaml|lock)|values([.-].*)?\\.ya?ml)$/i && !explorerResourceIsFolder && config.zovoHelm.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoHelm.zovoPro.exportValuesDoc",
+          "when": "resourceFilename =~ /^(Chart\\.(yaml|lock)|values([.-].*)?\\.ya?ml)$/i && !explorerResourceIsFolder && config.zovoHelm.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "zovoHelm.auditChart",
+          "when": "config.zovoHelm.showProTools"
+        },
+        {
+          "command": "zovoHelm.diffValues",
+          "when": "config.zovoHelm.showProTools"
+        },
+        {
+          "command": "zovoHelm.exportValuesDoc",
+          "when": "config.zovoHelm.showProTools"
+        },
+        {
+          "command": "zovoHelm.zovoPro.auditChart",
+          "when": "false"
+        },
+        {
+          "command": "zovoHelm.zovoPro.diffValues",
+          "when": "false"
+        },
+        {
+          "command": "zovoHelm.zovoPro.exportValuesDoc",
+          "when": "false"
+        },
+        {
+          "command": "zovoHelm.zovoTitle.auditChart",
+          "when": "false"
+        },
+        {
+          "command": "zovoHelm.zovoTitle.diffValues",
+          "when": "false"
+        },
+        {
+          "command": "zovoHelm.zovoTitle.exportValuesDoc",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Helm Chart & Values Viewer",
+      "properties": {
+        "zovoHelm.maxFileMB": {
+          "type": "number",
+          "default": 16,
+          "minimum": 1,
+          "maximum": 128,
+          "description": "Files up to this size open in the Helm Chart & Values Viewer."
+        },
+        "zovoHelm.pageSize": {
+          "type": "number",
+          "default": 100,
+          "minimum": 20,
+          "maximum": 500,
+          "description": "Value keys shown on one page of the Helm values explorer."
+        },
+        "zovoHelm.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (chart audit, values diff and parameter reference export) in the Command Palette, the Explorer menu, the editor title menu and the viewer toolbar. Everything free stays visible."
+        },
+        "zovoHelm.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a store rating after 3 Helm files open without an error across 2 days. Choosing No thanks never asks again. Nothing is sent anywhere."
+        },
+        "zovoHelm.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the viewer. Nothing is sent anywhere."
+        },
+        "zovo.helmview.trial.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 7-day Zovo Pro trial button in the Pro panel."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "zovoHelm.start",
+        "title": "Get started with the Helm Chart & Values Viewer",
+        "description": "Inspect Chart.yaml, values.yaml, values.*.yaml and Chart.lock files in VS Code: chart metadata, dependency tree, nested values explorer and static security checks, offline.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a Helm chart or values file",
+            "description": "Click any Chart.yaml, values.yaml, values.*.yaml or Chart.lock file in the Explorer to inspect metadata, dependencies, nested keys and security checks.\n[Open the sample Helm values file](command:zovoHelm.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "A Helm values.yaml file open in the viewer showing nested value keys, chart dependencies and static security checks."
+            },
+            "completionEvents": [
+              "onCommand:zovoHelm.openSample"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}

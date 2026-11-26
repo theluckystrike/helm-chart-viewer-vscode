@@ -1,0 +1,30 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/acme/payments-service
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: payments.example.com
+
+resources: {}
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 75
+
+postgresql:
+  enabled: true
+  auth:
+    username: payments
+    password: prod-db-secret-value-9912
